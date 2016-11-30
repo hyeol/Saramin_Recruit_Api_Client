@@ -1,8 +1,10 @@
 <?php
 
-namespace Saramin\Parameters;
+namespace Saramin\RecruitApiClient\Parameters;
 
-class jobCategory implements ParametersInterface
+use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+
+class JobCategory implements ParameterInterface
 {
     private $job_category = '';
 
@@ -16,8 +18,19 @@ class jobCategory implements ParametersInterface
         $this->job_category = $job_category;
     }
 
+    /**
+     * @return bool
+     */
     public function validate()
     {
         // TODO: Implement validate() method.
+    }
+
+    /**
+     * @return array
+     */
+    public function getQueryArray()
+    {
+        // TODO: Implement getQueryArray() method.
     }
 }

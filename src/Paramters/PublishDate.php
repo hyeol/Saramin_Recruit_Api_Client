@@ -1,8 +1,10 @@
 <?php
 
-namespace Saramin\Parameters;
+namespace Saramin\RecruitApiClient\Parameters;
 
-class PublishDate implements ParametersInterface
+use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+
+class PublishDate implements ParameterInterface
 {
     private $published = '';
     private $published_min = '';
@@ -18,8 +20,19 @@ class PublishDate implements ParametersInterface
         $this->published = $published;
     }
 
+    /**
+     * @return bool
+     */
     public function validate()
     {
         // TODO: Implement validate() method.
+    }
+
+    /**
+     * @return array
+     */
+    public function getQueryArray()
+    {
+        // TODO: Implement getQueryArray() method.
     }
 }
