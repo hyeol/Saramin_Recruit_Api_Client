@@ -21,9 +21,9 @@ class PublishDate implements ParameterInterface
     }
 
     /**
-     * @return bool
+     * @return array
      */
-    public function validate()
+    public function rules()
     {
         // TODO: Implement validate() method.
     }

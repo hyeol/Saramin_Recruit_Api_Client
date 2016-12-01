@@ -11,7 +11,7 @@ class Start implements ParameterInterface
     /**
      * @return bool
      */
-    public function validate()
+    public function rules()
     {
         // TODO: Implement validate() method.
     }

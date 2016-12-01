@@ -6,9 +6,9 @@ namespace Saramin\RecruitApiClient\Contracts;
 interface ParameterInterface
 {
     /**
-     * @return bool
+     * @return array
      */
-    public function validate();
+    public function rules();
 
     /**
      * @return array

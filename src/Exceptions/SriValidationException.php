@@ -3,7 +3,7 @@
 namespace Saramin\RecruitApiClient\Exceptions;
 
 
-class SriInvalidParameterException extends \Exception
+class SriValidationException extends \Exception
 {
 
 }
