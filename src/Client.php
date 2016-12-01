@@ -28,14 +28,19 @@ class Client
 
     /**
      * @param ParameterInterface $parameter
+     *
+     * @return $this
      */
     public function pushParameter(ParameterInterface $parameter)
     {
         array_push($this->parameters, $parameter);
+
+        return $this;
     }
 
+
     /**
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \Saramin\RecruitApiClient\HttpResponseParser
      */
     public function request()
     {
@@ -46,6 +51,14 @@ class Client
                 'query' => $this->getParameterAsArray()
             ])
         );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function requestAsJson()
+    {
+        return $this->request()->asJson();
     }
 
     /**
