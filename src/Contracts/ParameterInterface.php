@@ -2,7 +2,6 @@
 
 namespace Saramin\RecruitApiClient\Contracts;
 
-
 interface ParameterInterface
 {
     /**

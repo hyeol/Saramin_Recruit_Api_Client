@@ -2,7 +2,6 @@
 
 namespace Saramin\RecruitApiClient;
 
-
 use Psr\Http\Message\ResponseInterface;
 
 class HttpResponseParser
@@ -23,12 +22,10 @@ class HttpResponseParser
 
     public function asJson()
     {
-
     }
 
     public function asXml()
     {
-
     }
 
     public function __toString()

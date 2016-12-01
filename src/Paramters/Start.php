@@ -2,7 +2,6 @@
 
 namespace Saramin\RecruitApiClient\Parameters;
 
-
 use Saramin\RecruitApiClient\Contracts\ParameterInterface;
 
 class Start implements ParameterInterface
