@@ -1,10 +1,10 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Parameters;
+namespace Saramin\RecruitApi\Parameters;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
 
-class Sr implements ParameterInterface
+class BbsGb implements ParameterInterface
 {
     private $bbs_gb = 0;
 

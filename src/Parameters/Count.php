@@ -1,21 +1,21 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Parameters;
+namespace Saramin\RecruitApi\Parameters;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
 
-class Stock implements ParameterInterface
+class Count implements ParameterInterface
 {
-    private $stock = '';
+    private $count = 0;
 
     /**
-     * Stock constructor.
+     * Count constructor.
      *
-     * @param string $stock
+     * @param int $count
      */
-    public function __construct($stock)
+    public function __construct($count)
     {
-        $this->stock = $stock;
+        $this->count = $count;
     }
 
     /**

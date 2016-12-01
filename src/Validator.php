@@ -1,9 +1,9 @@
 <?php
 
-namespace Saramin\RecruitApiClient;
+namespace Saramin\RecruitApi;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
-use Saramin\RecruitApiClient\Exceptions\SriValidationException;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Exceptions\SriValidationException;
 
 class Validator
 {
@@ -19,9 +19,9 @@ class Validator
 
         foreach ($rules as $field => $rule) {
             foreach ($rule as $checker) {
-                if (!method_exists($this, 'validate' . $checker)) {
-                    throw new SriValidationException();
-                } elseif (!call_user_func([$this, 'validate' . $checker], $data[$field])) {
+                if (!method_exists($this, 'validate' . $checker)
+                    || !call_user_func([$this, 'validate' . $checker], $data[$field])
+                ) {
                     throw new SriValidationException();
                 }
             }
@@ -36,5 +36,15 @@ class Validator
     public function validateInteger($value)
     {
         return is_numeric($value);
+    }
+
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
+    public function validateString($value)
+    {
+        return is_string($value);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Parameters;
+namespace Saramin\RecruitApi\Parameters;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class Keywords implements ParameterInterface
 {
@@ -23,7 +23,7 @@ class Keywords implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['keywords' => ['string']];
     }
 
     /**
@@ -31,6 +31,6 @@ class Keywords implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['keywords' => $this->keywords];
     }
 }

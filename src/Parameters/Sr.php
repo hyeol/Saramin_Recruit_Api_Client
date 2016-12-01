@@ -1,21 +1,21 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Parameters;
+namespace Saramin\RecruitApi\Parameters;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
 
-class EduLevel implements ParameterInterface
+class Sr implements ParameterInterface
 {
-    private $edu_lv = '';
+    private $bbs_gb = 0;
 
     /**
-     * EduLevel constructor.
+     * BbsGb constructor.
      *
-     * @param string $edu_lv
+     * @param int $bbs_gb
      */
-    public function __construct($edu_lv)
+    public function __construct($bbs_gb)
     {
-        $this->edu_lv = $edu_lv;
+        $this->bbs_gb = $bbs_gb;
     }
 
     /**
