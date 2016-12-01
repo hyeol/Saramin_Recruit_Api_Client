@@ -1,22 +1,21 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Parameters;
+namespace Saramin\RecruitApi\Parameters;
 
+use Saramin\RecruitApi\Contracts\ParameterInterface;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
-
-class Sr implements ParameterInterface
+class Stock implements ParameterInterface
 {
-    private $bbs_gb = 0;
+    private $stock = '';
 
     /**
-     * BbsGb constructor.
+     * Stock constructor.
      *
-     * @param int $bbs_gb
+     * @param string $stock
      */
-    public function __construct($bbs_gb)
+    public function __construct($stock)
     {
-        $this->bbs_gb = $bbs_gb;
+        $this->stock = $stock;
     }
 
     /**

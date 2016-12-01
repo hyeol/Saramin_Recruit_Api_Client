@@ -1,7 +1,6 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Contracts;
-
+namespace Saramin\RecruitApi\Contracts;
 
 interface ParameterInterface
 {

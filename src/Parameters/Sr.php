@@ -1,21 +1,21 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Parameters;
+namespace Saramin\RecruitApi\Parameters;
 
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
 
-class Sort implements ParameterInterface
+class Sr implements ParameterInterface
 {
-    private $sort = '';
+    private $bbs_gb = 0;
 
     /**
-     * Sort constructor.
+     * BbsGb constructor.
      *
-     * @param string $sort
+     * @param int $bbs_gb
      */
-    public function __construct($sort)
+    public function __construct($bbs_gb)
     {
-        $this->sort = $sort;
+        $this->bbs_gb = $bbs_gb;
     }
 
     /**

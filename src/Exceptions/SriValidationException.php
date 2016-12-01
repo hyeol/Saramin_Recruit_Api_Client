@@ -1,9 +1,7 @@
 <?php
 
-namespace Saramin\RecruitApiClient\Exceptions;
-
+namespace Saramin\RecruitApi\Exceptions;
 
 class SriValidationException extends \Exception
 {
-
 }

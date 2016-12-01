@@ -1,14 +1,14 @@
 <?php
 
-namespace Saramin\RecruitApiClient;
+namespace Saramin\RecruitApi;
 
 use GuzzleHttp\Client as HttpClient;
-use Saramin\RecruitApiClient\Contracts\ParameterInterface;
-use Saramin\RecruitApiClient\Exceptions\SriValidationException;
+use Saramin\RecruitApi\Contracts\ParameterInterface;
+use Saramin\RecruitApi\Exceptions\SriValidationException;
 
 class Client
 {
-    const API_BASE_PATH = 'http://api.saramin.co.kr/search';
+    const API_BASE_URI = 'http://api.saramin.co.kr/job-search';
     /**
      * @var array
      */
@@ -18,34 +18,50 @@ class Client
      */
     private $validator;
 
+    /** @var HttpClient */
+    private $http;
+
     /**
      * Client constructor.
+     *
+     * @param \GuzzleHttp\Client            $http
+     * @param \Saramin\RecruitApi\Validator $validator
      */
-    public function __construct()
+    public function __construct(HttpClient $http = null, Validator $validator = null)
     {
-        $this->validator = new Validator();
+        $this->http = !is_null($http) ? $http : new HttpClient();
+
+        $this->validator = !is_null($validator) ? $validator : new Validator();
     }
 
     /**
      * @param ParameterInterface $parameter
+     *
+     * @return $this
      */
     public function pushParameter(ParameterInterface $parameter)
     {
         array_push($this->parameters, $parameter);
+
+        return $this;
     }
 
     /**
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \Saramin\RecruitApi\HttpResponseParser
      */
     public function request()
     {
-        $http = new HttpClient();
+        return new HttpResponseParser($this->http->request('GET', self::API_BASE_URI, [
+            'query' => $this->getParameterAsArray()
+        ]));
+    }
 
-        return new HttpResponseParser(
-            $http->request('GET', self::API_BASE_PATH, [
-                'query' => $this->getParameterAsArray()
-            ])
-        );
+    /**
+     * @return mixed
+     */
+    public function requestAsJson()
+    {
+        return $this->request()->asJson();
     }
 
     /**

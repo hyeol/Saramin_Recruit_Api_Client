@@ -1,7 +1,6 @@
 <?php
 
-namespace Saramin\RecruitApiClient;
-
+namespace Saramin\RecruitApi;
 
 use Psr\Http\Message\ResponseInterface;
 
@@ -23,12 +22,11 @@ class HttpResponseParser
 
     public function asJson()
     {
-
+        return $this->response->getBody();
     }
 
     public function asXml()
     {
-
     }
 
     public function __toString()
