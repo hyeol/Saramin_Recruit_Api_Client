@@ -19,9 +19,15 @@ class Validator
 
         foreach ($rules as $field => $rule) {
             foreach ($rule as $checker) {
-                if (!method_exists($this, 'validate' . $checker)
-                    || !call_user_func([$this, 'validate' . $checker], $data[$field])
-                ) {
+                $explodedChecker = explode(':', $checker);
+                $checkingRule = $explodedChecker[0];
+                if (count($explodedChecker) >= 2) {
+                    $parameter = $explodedChecker[1];
+                }
+
+                if (! method_exists($this, 'validate' . $checkingRule)) {
+                    throw new SriValidationException();
+                } else if (! call_user_func_array([$this, 'validate' . $checkingRule], [$data[$field], $parameter])) {
                     throw new SriValidationException();
                 }
             }
@@ -33,18 +39,38 @@ class Validator
      *
      * @return bool
      */
-    public function validateInteger($value)
+    public function validateNumeric($value)
     {
         return is_numeric($value);
     }
 
     /**
      * @param $value
-     *
+     * @param $parameter
      * @return bool
      */
-    public function validateString($value)
+    public function validateIn($value, $parameter)
     {
-        return is_string($value);
+        return in_array($value, explode(',', $parameter));
+    }
+
+    /**
+     * @param $value
+     * @param $parameter
+     * @return bool
+     */
+    public function validateMin($value, $parameter)
+    {
+        return $value >= $parameter;
+    }
+
+    /**
+     * @param $value
+     * @param $parameter
+     * @return bool
+     */
+    public function validateMax($value, $parameter)
+    {
+        return $value <= $parameter;
     }
 }
