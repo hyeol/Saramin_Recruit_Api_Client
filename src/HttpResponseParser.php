@@ -13,6 +13,7 @@ class HttpResponseParser
 
     /**
      * HttpResponseParser constructor.
+     *
      * @param ResponseInterface $response
      */
     public function __construct(ResponseInterface $response)
@@ -20,13 +21,19 @@ class HttpResponseParser
         $this->response = $response;
     }
 
+    public function asArray()
+    {
+        return (array)json_decode($this->asJson(), true);
+    }
+
     public function asJson()
     {
-        return $this->response->getBody();
+        return json_encode(simplexml_load_string($this->asXml()));
     }
 
     public function asXml()
     {
+        return (string)$this->response->getBody();
     }
 
     public function __toString()

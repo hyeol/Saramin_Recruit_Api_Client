@@ -20,14 +20,18 @@ class Validator
         foreach ($rules as $field => $rule) {
             foreach ($rule as $checker) {
                 $explodedChecker = explode(':', $checker);
-                $checkingRule = $explodedChecker[0];
+                $checkingRule    = $explodedChecker[0];
+
+                $params = null;
                 if (count($explodedChecker) >= 2) {
-                    $parameter = $explodedChecker[1];
+                    $params = $explodedChecker[1];
                 }
 
-                if (! method_exists($this, 'validate' . $checkingRule)) {
+                $checkingRule = ucfirst($checkingRule);
+
+                if (!method_exists($this, 'validate' . $checkingRule)) {
                     throw new SriValidationException();
-                } else if (! call_user_func_array([$this, 'validate' . $checkingRule], [$data[$field], $parameter])) {
+                } elseif (!call_user_func_array([$this, 'validate' . $checkingRule], [$data[$field], $params])) {
                     throw new SriValidationException();
                 }
             }
@@ -46,7 +50,18 @@ class Validator
 
     /**
      * @param $value
+     *
+     * @return bool
+     */
+    public function validateString($value)
+    {
+        return is_string($value);
+    }
+
+    /**
+     * @param $value
      * @param $parameter
+     *
      * @return bool
      */
     public function validateIn($value, $parameter)
@@ -57,6 +72,7 @@ class Validator
     /**
      * @param $value
      * @param $parameter
+     *
      * @return bool
      */
     public function validateMin($value, $parameter)
@@ -67,6 +83,7 @@ class Validator
     /**
      * @param $value
      * @param $parameter
+     *
      * @return bool
      */
     public function validateMax($value, $parameter)

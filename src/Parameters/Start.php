@@ -6,13 +6,24 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class Start implements ParameterInterface
 {
+    private $start = 0;
+
+    /**
+     * Start constructor.
+     *
+     * @param int $start
+     */
+    public function __construct($start)
+    {
+        $this->start = $start;
+    }
 
     /**
      * @return bool
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['start' => ['numeric']];
     }
 
     /**
@@ -20,6 +31,6 @@ class Start implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['start' => $this->start];
     }
 }

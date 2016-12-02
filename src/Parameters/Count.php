@@ -23,7 +23,10 @@ class Count implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['count' => [
+            'numeric',
+            'max:110'
+        ]];
     }
 
     /**
@@ -31,6 +34,6 @@ class Count implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['count' => $this->count];
     }
 }
