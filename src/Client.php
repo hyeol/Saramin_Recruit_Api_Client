@@ -5,6 +5,9 @@ namespace Saramin\RecruitApi;
 use GuzzleHttp\Client as HttpClient;
 use Saramin\RecruitApi\Contracts\ParameterInterface;
 use Saramin\RecruitApi\Exceptions\SriValidationException;
+use Saramin\RecruitApi\Parameters\Count;
+use Saramin\RecruitApi\Parameters\Sort;
+use Saramin\RecruitApi\Parameters\Start;
 
 class Client
 {
@@ -13,12 +16,15 @@ class Client
      * @var array
      */
     private $parameters = [];
+
     /**
      * @var Validator
      */
     private $validator;
 
-    /** @var HttpClient */
+    /**
+     * @var HttpClient
+     */
     private $http;
 
     /**
@@ -35,7 +41,7 @@ class Client
     }
 
     /**
-     * @param ParameterInterface $parameter
+     * @param \Saramin\RecruitApi\Contracts\ParameterInterface $parameter
      *
      * @return $this
      */
@@ -47,54 +53,60 @@ class Client
     }
 
     /**
+     * @param int $offset
+     *
+     * @return \Saramin\RecruitApi\Client
+     */
+    public function offset($offset = 1)
+    {
+        return $this->pushParameter(new Start($offset));
+    }
+
+    /**
+     * @param int $count
+     *
+     * @return \Saramin\RecruitApi\Client
+     */
+    public function take($count = 10)
+    {
+        return $this->pushParameter(new Count($count));
+    }
+
+    /**
+     * @param $sort
+     *
+     * @return \Saramin\RecruitApi\Client
+     */
+    public function orderBy($sort)
+    {
+        return $this->pushParameter(new Sort($sort));
+    }
+
+    /**
      * @return \Saramin\RecruitApi\HttpResponseParser
      */
     public function request()
     {
         return new HttpResponseParser($this->http->request('GET', self::API_BASE_URI, [
-            'query' => $this->getParameterAsArray()
+            'query' => $this->buildQuery()
         ]));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function requestAsJson()
-    {
-        return $this->request()->asJson();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function requestAsXml()
-    {
-        return $this->request()->asXml();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function requestAsArray()
-    {
-        return $this->request()->asArray();
     }
 
     /**
      * @return array
      * @throws SriValidationException
      */
-    private function getParameterAsArray()
+    private function buildQuery()
     {
-        $arrayParameter = [];
+        $query = [];
 
         /** @var ParameterInterface $parameter */
         foreach ($this->parameters as $parameter) {
             $this->validator->validate($parameter);
 
-            $arrayParameter = array_merge($arrayParameter, $parameter->getQueryArray());
+            $query = array_merge($query, $parameter->getQueryArray());
         }
 
-        return $arrayParameter;
+        return $query;
     }
 }

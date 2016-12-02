@@ -7,6 +7,17 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 class Sort implements ParameterInterface
 {
     private $sort = '';
+    private $sortArray = [
+        'pd', // 게시일 역순(기본값)
+        'pa', //게시일순
+        'ud', //최근수정순
+        'ua', //수정일 정순
+        'da', //마감일 정순
+        'dd', //마감일 역순
+        'rc', //조회수 역순
+        'ac', //지원자수 역순
+        're', //답변수 역순
+    ];
 
     /**
      * Sort constructor.
@@ -23,7 +34,9 @@ class Sort implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['sort' => [
+            'in:' . join(',', $this->sortArray)
+        ]];
     }
 
     /**
@@ -31,6 +44,6 @@ class Sort implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['sort' => $this->sort];
     }
 }
