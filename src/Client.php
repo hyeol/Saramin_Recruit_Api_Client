@@ -65,6 +65,22 @@ class Client
     }
 
     /**
+     * @return mixed
+     */
+    public function requestAsXml()
+    {
+        return $this->request()->asXml();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function requestAsArray()
+    {
+        return $this->request()->asArray();
+    }
+
+    /**
      * @return array
      * @throws SriValidationException
      */
