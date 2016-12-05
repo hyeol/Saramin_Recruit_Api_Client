@@ -73,6 +73,33 @@ class ValidatorTest extends BaseTestCase
 
         $this->validate($mock);
     }
+    /** @test */
+    public function validateRegex()
+    {
+        $mock = $this->mockParameterInterface();
+        $this->setRules($mock, [
+            'field' => [
+                'regex:^(stock-kospi|stock-kosdaq)$'
+            ]
+        ]);
+        $this->setData($mock, [
+            'field' => 'test'
+        ]);
+
+        $this->validateWithExpectException($mock);
+
+        $mock = $this->mockParameterInterface();
+        $this->setRules($mock, [
+            'field' => [
+                'regex:^(stock-kospi|stock-kosdaq)$'
+            ]
+        ]);
+        $this->setData($mock, [
+            'field' => 'stock-kospi'
+        ]);
+
+        $this->validate($mock);
+    }
 
     /** @test */
     public function validateNumericValue()

@@ -23,7 +23,10 @@ class EduLevel implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return [
+            'min:0',
+            'max:9'
+        ];
     }
 
     /**
@@ -31,6 +34,8 @@ class EduLevel implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return [
+            'edu_lv' => $this->edu_lv
+        ];
     }
 }

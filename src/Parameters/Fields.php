@@ -23,7 +23,9 @@ class Fields implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return [
+            'regex:^(posting-date|expiration-date|keyword-code|count)$'
+        ];
     }
 
     /**
@@ -31,6 +33,8 @@ class Fields implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return [
+            'fields' => $this->fields
+        ];
     }
 }

@@ -31,6 +31,8 @@ class JobType implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return [
+            'job_type' => $this->job_type
+        ];
     }
 }
