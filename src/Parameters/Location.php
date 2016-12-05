@@ -6,17 +6,22 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class Location implements ParameterInterface
 {
-    private $loc_cd = 0;
-    private $loc_mcd = 0;
-    private $loc_bcd = 0;
+    private $loc_mcd = [];
+    private $loc_bcd = [];
+    private $loc_cd = [];
 
     /**
      * Location constructor.
-     * @param $location
+     *
+     * @param null $loc_mcd
+     * @param null $loc_bcd
+     * @param null $loc_cd
      */
-    public function __construct($location)
+    public function __construct($loc_mcd = null, $loc_bcd = null, $loc_cd = null)
     {
-        $this->location = $location;
+        $this->loc_mcd = $loc_mcd;
+        $this->loc_bcd = $loc_bcd;
+        $this->loc_cd  = $loc_cd;
     }
 
     /**
@@ -24,7 +29,11 @@ class Location implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return [
+            'loc_mcd' => ['numeric'],
+            'loc_bcd' => ['numeric'],
+            'loc_cd'  => ['numeric'],
+        ];
     }
 
     /**
@@ -32,6 +41,10 @@ class Location implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return [
+            'loc_mcd' => join(' ', $this->loc_mcd),
+            'loc_bcd' => join(' ', $this->loc_bcd),
+            'loc_cd'  => join(' ', $this->loc_cd),
+        ];
     }
 }

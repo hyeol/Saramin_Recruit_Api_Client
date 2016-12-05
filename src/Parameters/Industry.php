@@ -23,7 +23,7 @@ class Industry implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['ind_cd' => ['numeric']];
     }
 
     /**
@@ -31,6 +31,6 @@ class Industry implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['ind_cd' => $this->ind_cd];
     }
 }

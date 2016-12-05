@@ -23,7 +23,7 @@ class Deadline implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['deadline' => ['in:today,tomorrow,-']];
     }
 
     /**
@@ -31,6 +31,6 @@ class Deadline implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['deadline' => $this->deadline];
     }
 }
