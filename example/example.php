@@ -12,7 +12,7 @@ $request = $client
     ->offset(1)
     ->take(5)
     ->orderBy('ud')
-    ->request()
+    ->get()
     ->asArray();
 
 var_export($request);
