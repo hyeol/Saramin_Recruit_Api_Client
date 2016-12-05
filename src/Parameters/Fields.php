@@ -6,7 +6,13 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class Fields implements ParameterInterface
 {
-    private $fields = '';
+    private $fields = [];
+    private $fieldArray = [
+        'posting-date', // 날짜/시간 형식의 게시일시
+        'expiration-date', // 날짜/시간 형식의 마감일시
+        'keyword-code', // 업직종 키워드(상세분류) 코드
+        'count' // 조회수/지원자수/댓글수
+    ];
 
     /**
      * fields constructor.
@@ -23,7 +29,7 @@ class Fields implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['fields' => ['in:' . join(',', $this->fieldArray)]];
     }
 
     /**
@@ -31,6 +37,6 @@ class Fields implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['fields' => join(' ', $this->fields)];
     }
 }

@@ -6,7 +6,7 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class JobType implements ParameterInterface
 {
-    private $job_type = '';
+    private $job_type = [];
 
     /**
      * JobType constructor.
@@ -23,7 +23,10 @@ class JobType implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['job_type' => [
+            'min:1',
+            'max:15',
+        ]];
     }
 
     /**
@@ -31,6 +34,6 @@ class JobType implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['job_type' => join(' ', $this->job_type)];
     }
 }

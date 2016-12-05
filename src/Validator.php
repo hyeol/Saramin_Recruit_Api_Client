@@ -90,4 +90,15 @@ class Validator
     {
         return $value <= $parameter;
     }
+
+    /**
+     * @param $value
+     * @param $parameter
+     *
+     * @return bool
+     */
+    public function validateDate($value, $parameter)
+    {
+        return true;
+    }
 }

@@ -14,10 +14,14 @@ class PublishDate implements ParameterInterface
      * PublishDate constructor.
      *
      * @param string $published
+     * @param null   $published_min
+     * @param null   $published_max
      */
-    public function __construct($published)
+    public function __construct($published = null, $published_min = null, $published_max = null)
     {
-        $this->published = $published;
+        $this->published     = $published;
+        $this->published_min = $published_min;
+        $this->published_max = $published_max;
     }
 
     /**
@@ -25,7 +29,11 @@ class PublishDate implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return [
+            'published'     => ['date'],
+            'published_min' => ['datetime|timestamp'],
+            'published_max' => ['datetime|timestamp'],
+        ];
     }
 
     /**
@@ -33,6 +41,10 @@ class PublishDate implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return [
+            'published'     => $this->published,
+            'published_min' => $this->published_min,
+            'published_max' => $this->published_max,
+        ];
     }
 }

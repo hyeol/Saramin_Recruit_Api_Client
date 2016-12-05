@@ -6,7 +6,7 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class Stock implements ParameterInterface
 {
-    private $stock = '';
+    private $stock = [];
 
     /**
      * Stock constructor.
@@ -23,7 +23,11 @@ class Stock implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return [
+            'stock' => [
+                'in' => ['kospi', 'kosdaq']
+            ]
+        ];
     }
 
     /**
@@ -31,6 +35,6 @@ class Stock implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['stock' => join(' ', $this->stock)];
     }
 }

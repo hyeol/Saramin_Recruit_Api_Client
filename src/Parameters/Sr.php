@@ -6,16 +6,12 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class Sr implements ParameterInterface
 {
-    private $bbs_gb = 0;
+    private $sr = [];
 
-    /**
-     * BbsGb constructor.
-     *
-     * @param int $bbs_gb
-     */
-    public function __construct($bbs_gb)
+
+    public function __construct($sr)
     {
-        $this->bbs_gb = $bbs_gb;
+        $this->sr = $sr;
     }
 
     /**
@@ -23,7 +19,7 @@ class Sr implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['sr' => 'in:directhire,exjc'];
     }
 
     /**
@@ -31,6 +27,6 @@ class Sr implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['sr' => join(' ', $this->sr)];
     }
 }

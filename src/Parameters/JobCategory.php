@@ -6,7 +6,7 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class JobCategory implements ParameterInterface
 {
-    private $job_category = '';
+    private $job_category = [];
 
     /**
      * jobCategory constructor.
@@ -23,7 +23,7 @@ class JobCategory implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['job_category' => ['numeric']];
     }
 
     /**
@@ -31,6 +31,6 @@ class JobCategory implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['job_category' => join(' ', $this->job_category)];
     }
 }

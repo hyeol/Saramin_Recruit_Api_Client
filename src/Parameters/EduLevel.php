@@ -6,7 +6,7 @@ use Saramin\RecruitApi\Contracts\ParameterInterface;
 
 class EduLevel implements ParameterInterface
 {
-    private $edu_lv = '';
+    private $edu_lv = [];
 
     /**
      * EduLevel constructor.
@@ -23,7 +23,12 @@ class EduLevel implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return [
+            'edu_lv' => [
+                'min:0',
+                'max:9',
+            ]
+        ];
     }
 
     /**
@@ -31,6 +36,6 @@ class EduLevel implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['edu_lv' => join(' ', $this->edu_lv)];
     }
 }

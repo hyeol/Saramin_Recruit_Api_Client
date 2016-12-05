@@ -23,7 +23,7 @@ class BbsGb implements ParameterInterface
      */
     public function rules()
     {
-        // TODO: Implement validate() method.
+        return ['bbs_gb' => ['in:0,1']];
     }
 
     /**
@@ -31,6 +31,6 @@ class BbsGb implements ParameterInterface
      */
     public function getQueryArray()
     {
-        // TODO: Implement getQueryArray() method.
+        return ['bbs_gb' => $this->bbs_gb];
     }
 }
