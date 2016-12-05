@@ -40,6 +40,17 @@ class Validator
 
     /**
      * @param $value
+     * @param $parameter
+     *
+     * @return bool
+     */
+    public function validateRegex($value, $parameter)
+    {
+        return preg_match('/' . $parameter . '/', $value) == 1;
+    }
+
+    /**
+     * @param $value
      *
      * @return bool
      */
