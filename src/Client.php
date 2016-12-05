@@ -85,7 +85,7 @@ class Client
     /**
      * @return \Saramin\RecruitApi\HttpResponseParser
      */
-    public function request()
+    public function get()
     {
         return new HttpResponseParser($this->http->request('GET', self::API_BASE_URI, [
             'query' => $this->buildQuery()

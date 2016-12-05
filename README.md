@@ -10,7 +10,7 @@ Saramin Recruit API Client
 ## Installation
 	
 ```bash
-    composer require Saramin/RecruitApi
+composer require Saramin/RecruitApi
 ```
 
 ## Example
@@ -29,6 +29,6 @@ $recruitList = $client
     ->offset(1)
     ->take(5)
     ->orderBy('ud')
-    ->request()
+    ->get()
     ->asArray();
 ```
