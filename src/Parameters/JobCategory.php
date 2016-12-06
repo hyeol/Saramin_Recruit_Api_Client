@@ -31,6 +31,6 @@ class JobCategory implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['job_category' => join(' ', $this->job_category)];
+        return ['job_category' => implode(' ', $this->job_category)];
     }
 }

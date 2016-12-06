@@ -25,8 +25,8 @@ class Stock implements ParameterInterface
     {
         return [
             'stock' => [
-                'in' => ['kospi', 'kosdaq']
-            ]
+                'in' => ['kospi', 'kosdaq'],
+            ],
         ];
     }
 
@@ -35,6 +35,6 @@ class Stock implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['stock' => join(' ', $this->stock)];
+        return ['stock' => implode(' ', $this->stock)];
     }
 }

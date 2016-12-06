@@ -88,13 +88,14 @@ class Client
     public function get()
     {
         return new HttpResponseParser($this->http->request('GET', self::API_BASE_URI, [
-            'query' => $this->buildQuery()
+            'query' => $this->buildQuery(),
         ]));
     }
 
     /**
-     * @return array
      * @throws SriValidationException
+     *
+     * @return array
      */
     private function buildQuery()
     {

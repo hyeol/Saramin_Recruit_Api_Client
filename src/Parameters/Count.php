@@ -25,7 +25,7 @@ class Count implements ParameterInterface
     {
         return ['count' => [
             'numeric',
-            'max:110'
+            'max:110',
         ]];
     }
 

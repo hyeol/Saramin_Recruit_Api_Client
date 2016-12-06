@@ -19,7 +19,7 @@ class UpdateDate implements ParameterInterface
      */
     public function __construct($updated = null, $updated_min = null, $updated_max = null)
     {
-        $this->updated     = $updated;
+        $this->updated = $updated;
         $this->updated_min = $updated_min;
         $this->updated_max = $updated_max;
     }
@@ -42,7 +42,7 @@ class UpdateDate implements ParameterInterface
     public function getQueryArray()
     {
         return [
-            'updated'     => $this->updated ,
+            'updated'     => $this->updated,
             'updated_min' => $this->updated_min,
             'updated_max' => $this->updated_max,
         ];

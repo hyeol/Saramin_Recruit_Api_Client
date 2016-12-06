@@ -22,11 +22,11 @@ class ValidatorTest extends BaseTestCase
             'field' => [
                 'numeric',
                 'min:10',
-                'max:20'
-            ]
+                'max:20',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 'asdf'
+            'field' => 'asdf',
         ]);
 
         $this->validateWithExpectException($mock);
@@ -36,11 +36,11 @@ class ValidatorTest extends BaseTestCase
             'field' => [
                 'numeric',
                 'min:10',
-                'max:20'
-            ]
+                'max:20',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => '0'
+            'field' => '0',
         ]);
 
         $this->validateWithExpectException($mock);
@@ -50,11 +50,11 @@ class ValidatorTest extends BaseTestCase
             'field' => [
                 'numeric',
                 'min:10',
-                'max:20'
-            ]
+                'max:20',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => '30'
+            'field' => '30',
         ]);
 
         $this->validateWithExpectException($mock);
@@ -64,11 +64,11 @@ class ValidatorTest extends BaseTestCase
             'field' => [
                 'numeric',
                 'min:10',
-                'max:20'
-            ]
+                'max:20',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => '15'
+            'field' => '15',
         ]);
 
         $this->validate($mock);
@@ -81,10 +81,10 @@ class ValidatorTest extends BaseTestCase
         $this->setRules($mock, [
             'field' => [
                 'numeric',
-            ]
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 'asdf3'
+            'field' => 'asdf3',
         ]);
 
         $this->validateWithExpectException($mock);
@@ -93,10 +93,10 @@ class ValidatorTest extends BaseTestCase
         $this->setRules($mock, [
             'field' => [
                 'numeric',
-            ]
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 0
+            'field' => 0,
         ]);
 
         $this->validate($mock);
@@ -108,11 +108,11 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'in:a,b,c'
-            ]
+                'in:a,b,c',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => '1'
+            'field' => '1',
         ]);
 
         $this->validateWithExpectException($mock);
@@ -120,8 +120,8 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'in:a,b,c'
-            ]
+                'in:a,b,c',
+            ],
         ]);
         $this->setData($mock, [
             'field' => 'a',
@@ -136,11 +136,11 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'min:10'
-            ]
+                'min:10',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 1
+            'field' => 1,
         ]);
 
         $this->validateWithExpectException($mock);
@@ -148,11 +148,11 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'min:10'
-            ]
+                'min:10',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 10
+            'field' => 10,
         ]);
 
         $this->validate($mock);
@@ -164,11 +164,11 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'max:10'
-            ]
+                'max:10',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 15
+            'field' => 15,
         ]);
 
         $this->validateWithExpectException($mock);
@@ -176,11 +176,11 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'max:10'
-            ]
+                'max:10',
+            ],
         ]);
         $this->setData($mock, [
-            'field' => 1
+            'field' => 1,
         ]);
 
         $this->validate($mock);
@@ -191,7 +191,7 @@ class ValidatorTest extends BaseTestCase
      */
     private function mockParameterInterface()
     {
-        $mock = Mockery::mock("Saramin\\RecruitApi\\Contracts\\ParameterInterface");
+        $mock = Mockery::mock('Saramin\\RecruitApi\\Contracts\\ParameterInterface');
 
         return $mock;
     }
@@ -199,6 +199,7 @@ class ValidatorTest extends BaseTestCase
     /**
      * @param \Mockery\MockInterface $mock
      * @param $rules
+     *
      * @return mixed
      */
     private function setRules($mock, $rules)
@@ -212,6 +213,7 @@ class ValidatorTest extends BaseTestCase
     /**
      * @param \Mockery\MockInterface $mock
      * @param $data
+     *
      * @return \Mockery\MockInterface
      */
     private function setData($mock, $data)
@@ -232,7 +234,7 @@ class ValidatorTest extends BaseTestCase
 
             $this->assertTrue(false);
         } catch (\Exception $e) {
-            if ( ! $e instanceof Saramin\RecruitApi\Exceptions\SriValidationException) {
+            if (!$e instanceof Saramin\RecruitApi\Exceptions\SriValidationException) {
                 $this->assertTrue(false);
             }
         }
