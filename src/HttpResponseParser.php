@@ -23,7 +23,7 @@ class HttpResponseParser
 
     public function asArray()
     {
-        return (array)json_decode($this->asJson(), true);
+        return (array) json_decode($this->asJson(), true);
     }
 
     public function asJson()
@@ -33,11 +33,11 @@ class HttpResponseParser
 
     public function asXml()
     {
-        return (string)$this->response->getBody();
+        return (string) $this->response->getBody();
     }
 
     public function __toString()
     {
-        return "";
+        return '';
     }
 }

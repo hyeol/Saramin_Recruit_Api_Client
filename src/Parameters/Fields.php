@@ -11,7 +11,7 @@ class Fields implements ParameterInterface
         'posting-date', // 날짜/시간 형식의 게시일시
         'expiration-date', // 날짜/시간 형식의 마감일시
         'keyword-code', // 업직종 키워드(상세분류) 코드
-        'count' // 조회수/지원자수/댓글수
+        'count', // 조회수/지원자수/댓글수
     ];
 
     /**
@@ -29,7 +29,7 @@ class Fields implements ParameterInterface
      */
     public function rules()
     {
-        return ['fields' => ['in:' . join(',', $this->fieldArray)]];
+        return ['fields' => ['in:'.implode(',', $this->fieldArray)]];
     }
 
     /**
@@ -37,6 +37,6 @@ class Fields implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['fields' => join(' ', $this->fields)];
+        return ['fields' => implode(' ', $this->fields)];
     }
 }

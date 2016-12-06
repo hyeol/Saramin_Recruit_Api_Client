@@ -19,7 +19,7 @@ class PublishDate implements ParameterInterface
      */
     public function __construct($published = null, $published_min = null, $published_max = null)
     {
-        $this->published     = $published;
+        $this->published = $published;
         $this->published_min = $published_min;
         $this->published_max = $published_max;
     }

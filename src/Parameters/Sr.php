@@ -8,7 +8,6 @@ class Sr implements ParameterInterface
 {
     private $sr = [];
 
-
     public function __construct($sr)
     {
         $this->sr = $sr;
@@ -27,6 +26,6 @@ class Sr implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['sr' => join(' ', $this->sr)];
+        return ['sr' => implode(' ', $this->sr)];
     }
 }

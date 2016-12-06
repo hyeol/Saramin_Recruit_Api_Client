@@ -14,13 +14,13 @@ class Validator
      */
     public function validate(ParameterInterface $parameter)
     {
-        $data  = $parameter->getQueryArray();
+        $data = $parameter->getQueryArray();
         $rules = $parameter->rules();
 
         foreach ($rules as $field => $rule) {
             foreach ($rule as $checker) {
                 $explodedChecker = explode(':', $checker);
-                $checkingRule    = $explodedChecker[0];
+                $checkingRule = $explodedChecker[0];
 
                 $params = null;
                 if (count($explodedChecker) >= 2) {
@@ -29,9 +29,9 @@ class Validator
 
                 $checkingRule = ucfirst($checkingRule);
 
-                if (!method_exists($this, 'validate' . $checkingRule)) {
+                if (!method_exists($this, 'validate'.$checkingRule)) {
                     throw new SriValidationException();
-                } elseif (!call_user_func_array([$this, 'validate' . $checkingRule], [$data[$field], $params])) {
+                } elseif (!call_user_func_array([$this, 'validate'.$checkingRule], [$data[$field], $params])) {
                     throw new SriValidationException();
                 }
             }

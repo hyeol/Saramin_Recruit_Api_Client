@@ -27,7 +27,7 @@ class EduLevel implements ParameterInterface
             'edu_lv' => [
                 'min:0',
                 'max:9',
-            ]
+            ],
         ];
     }
 
@@ -36,6 +36,6 @@ class EduLevel implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['edu_lv' => join(' ', $this->edu_lv)];
+        return ['edu_lv' => implode(' ', $this->edu_lv)];
     }
 }

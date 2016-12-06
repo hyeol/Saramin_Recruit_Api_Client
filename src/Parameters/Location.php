@@ -21,7 +21,7 @@ class Location implements ParameterInterface
     {
         $this->loc_mcd = $loc_mcd;
         $this->loc_bcd = $loc_bcd;
-        $this->loc_cd  = $loc_cd;
+        $this->loc_cd = $loc_cd;
     }
 
     /**
@@ -42,9 +42,9 @@ class Location implements ParameterInterface
     public function getQueryArray()
     {
         return [
-            'loc_mcd' => join(' ', $this->loc_mcd),
-            'loc_bcd' => join(' ', $this->loc_bcd),
-            'loc_cd'  => join(' ', $this->loc_cd),
+            'loc_mcd' => implode(' ', $this->loc_mcd),
+            'loc_bcd' => implode(' ', $this->loc_bcd),
+            'loc_cd'  => implode(' ', $this->loc_cd),
         ];
     }
 }
