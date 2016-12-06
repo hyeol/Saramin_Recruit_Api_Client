@@ -3,7 +3,7 @@
     "type": "library",
     "keywords" : ["saramin", "recruit"],
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.5",
         "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev" : {
