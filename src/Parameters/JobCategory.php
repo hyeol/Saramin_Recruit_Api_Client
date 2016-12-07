@@ -11,11 +11,15 @@ class JobCategory implements ParameterInterface
     /**
      * jobCategory constructor.
      *
-     * @param string $job_category
+     * @param $job_category
      */
     public function __construct($job_category)
     {
-        $this->job_category = $job_category;
+        if (!is_array($job_category)) {
+            $this->job_category = [$job_category];
+        } else {
+            $this->job_category = $job_category;
+        }
     }
 
     /**
@@ -31,6 +35,6 @@ class JobCategory implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['job_category' => join(' ', $this->job_category)];
+        return ['job_category' => implode(' ', $this->job_category)];
     }
 }

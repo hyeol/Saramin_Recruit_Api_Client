@@ -14,13 +14,13 @@ class Validator
      */
     public function validate(ParameterInterface $parameter)
     {
-        $data  = $parameter->getQueryArray();
+        $data = $parameter->getQueryArray();
         $rules = $parameter->rules();
 
         foreach ($rules as $field => $rule) {
             foreach ($rule as $checker) {
                 $explodedChecker = explode(':', $checker);
-                $checkingRule    = $explodedChecker[0];
+                $checkingRule = $explodedChecker[0];
 
                 $params = null;
                 if (count($explodedChecker) >= 2) {
@@ -29,9 +29,9 @@ class Validator
 
                 $checkingRule = ucfirst($checkingRule);
 
-                if (!method_exists($this, 'validate' . $checkingRule)) {
+                if (!method_exists($this, 'validate'.$checkingRule)) {
                     throw new SriValidationException();
-                } elseif (!call_user_func_array([$this, 'validate' . $checkingRule], [$data[$field], $params])) {
+                } elseif (!call_user_func_array([$this, 'validate'.$checkingRule], [$data[$field], $params])) {
                     throw new SriValidationException();
                 }
             }
@@ -40,10 +40,21 @@ class Validator
 
     /**
      * @param $value
+     * @param $parameter
      *
      * @return bool
      */
-    public function validateNumeric($value)
+    private function validateRegex($value, $parameter)
+    {
+        return preg_match('/'.$parameter.'/', $value) == 1;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
+    private function validateNumeric($value)
     {
         return is_numeric($value);
     }
@@ -53,7 +64,7 @@ class Validator
      *
      * @return bool
      */
-    public function validateString($value)
+    private function validateString($value)
     {
         return is_string($value);
     }
@@ -64,7 +75,7 @@ class Validator
      *
      * @return bool
      */
-    public function validateIn($value, $parameter)
+    private function validateIn($value, $parameter)
     {
         return in_array($value, explode(',', $parameter));
     }
@@ -75,7 +86,7 @@ class Validator
      *
      * @return bool
      */
-    public function validateMin($value, $parameter)
+    private function validateMin($value, $parameter)
     {
         return $value >= $parameter;
     }
@@ -86,19 +97,41 @@ class Validator
      *
      * @return bool
      */
-    public function validateMax($value, $parameter)
+    private function validateMax($value, $parameter)
     {
         return $value <= $parameter;
     }
 
     /**
      * @param $value
-     * @param $parameter
      *
      * @return bool
      */
-    public function validateDate($value, $parameter)
+    private function validateDate($value)
     {
-        return true;
+        return $this->isDateFormat($value, 'Y-m-d');
+    }
+
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
+    private function validateDateTime($value)
+    {
+        return $this->isDateFormat($value, 'Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $date
+     * @param string $format
+     *
+     * @return bool
+     */
+    private function isDateFormat($date, $format = 'Y-m-d H:i:s')
+    {
+        $d = \DateTime::createFromFormat($format, $date);
+
+        return $d && $d->format($format) == $date;
     }
 }

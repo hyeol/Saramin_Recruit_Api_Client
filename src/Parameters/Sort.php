@@ -34,9 +34,11 @@ class Sort implements ParameterInterface
      */
     public function rules()
     {
-        return ['sort' => [
-            'in:' . join(',', $this->sortArray)
-        ]];
+        return [
+            'sort' => [
+                'in:'.implode(',', $this->sortArray),
+            ],
+        ];
     }
 
     /**
