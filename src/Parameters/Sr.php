@@ -11,11 +11,12 @@ class Sr implements ParameterInterface
 
     /**
      * Sr constructor.
+     *
      * @param $sr
      */
     public function __construct($sr)
     {
-        if (! is_array($sr)) {
+        if (!is_array($sr)) {
             $this->sr = $sr;
         }
     }
@@ -26,7 +27,7 @@ class Sr implements ParameterInterface
     public function rules()
     {
         return [
-            'sr' => 'in:directhire,exjc'
+            'sr' => 'in:directhire,exjc',
         ];
     }
 
@@ -35,6 +36,6 @@ class Sr implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['sr' => join(' ', $this->sr)];
+        return ['sr' => implode(' ', $this->sr)];
     }
 }

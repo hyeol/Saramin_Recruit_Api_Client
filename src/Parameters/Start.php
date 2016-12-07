@@ -24,7 +24,7 @@ class Start implements ParameterInterface
     public function rules()
     {
         return [
-            'start' => ['numeric']
+            'start' => ['numeric'],
         ];
     }
 
@@ -34,7 +34,7 @@ class Start implements ParameterInterface
     public function getQueryArray()
     {
         return [
-            'start' => $this->start
+            'start' => $this->start,
         ];
     }
 }

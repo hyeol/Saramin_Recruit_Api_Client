@@ -19,7 +19,7 @@ class PublishDate implements ParameterInterface
      */
     public function __construct($published = null, $published_min = null, $published_max = null)
     {
-        $this->published     = $published;
+        $this->published = $published;
 
         if (is_numeric($published_min)) {
             $this->published_min = date('Y-m-d H:i:s', $published_min);

@@ -15,7 +15,7 @@ class JobType implements ParameterInterface
      */
     public function __construct($jobType)
     {
-        if (! is_array($jobType)) {
+        if (!is_array($jobType)) {
             $this->jobType = [$jobType];
         } else {
             $this->jobType = $jobType;
@@ -31,7 +31,7 @@ class JobType implements ParameterInterface
             'job_type' => [
                 'min:1',
                 'max:15',
-            ]
+            ],
         ];
     }
 
@@ -41,7 +41,7 @@ class JobType implements ParameterInterface
     public function getQueryArray()
     {
         return [
-            'job_type' => join(' ', $this->jobType)
+            'job_type' => implode(' ', $this->jobType)
         ];
     }
 }
