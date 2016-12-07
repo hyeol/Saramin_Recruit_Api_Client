@@ -20,8 +20,18 @@ class PublishDate implements ParameterInterface
     public function __construct($published = null, $published_min = null, $published_max = null)
     {
         $this->published     = $published;
-        $this->published_min = $published_min;
-        $this->published_max = $published_max;
+
+        if (is_numeric($published_min)) {
+            $this->published_min = date('Y-m-d H:i:s', $published_min);
+        } else {
+            $this->published_min = $published_min;
+        }
+
+        if (is_numeric($published_max)) {
+            $this->published_max = date('Y-m-d H:i:s', $published_max);
+        } else {
+            $this->published_max = $published_max;
+        }
     }
 
     /**
@@ -31,8 +41,8 @@ class PublishDate implements ParameterInterface
     {
         return [
             'published'     => ['date'],
-            'published_min' => ['datetime|timestamp'],
-            'published_max' => ['datetime|timestamp'],
+            'published_min' => ['datetime'],
+            'published_max' => ['datetime'],
         ];
     }
 

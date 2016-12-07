@@ -15,6 +15,62 @@ class ValidatorTest extends BaseTestCase
     }
 
     /** @test */
+    public function validateDateTime()
+    {
+        $mock = $this->mockParameterInterface();
+        $this->setRules($mock, [
+            'field' => [
+                'datetime'
+            ]
+        ]);
+        $this->setData($mock, [
+            'field' => '12rewr'
+        ]);
+
+        $this->validateWithExpectException($mock);
+
+        $mock = $this->mockParameterInterface();
+        $this->setRules($mock, [
+            'field' => [
+                'datetime'
+            ]
+        ]);
+        $this->setData($mock, [
+            'field' => '2016-01-01 00:00:00'
+        ]);
+
+        $this->validate($mock);
+    }
+
+    /** @test */
+    public function validateDate()
+    {
+        $mock = $this->mockParameterInterface();
+        $this->setRules($mock, [
+            'field' => [
+                'date'
+            ]
+        ]);
+        $this->setData($mock, [
+            'field' => '12rewr'
+        ]);
+
+        $this->validateWithExpectException($mock);
+
+        $mock = $this->mockParameterInterface();
+        $this->setRules($mock, [
+            'field' => [
+                'date'
+            ]
+        ]);
+        $this->setData($mock, [
+            'field' => '2016-01-01'
+        ]);
+
+        $this->validate($mock);
+    }
+
+    /** @test */
     public function validateComplexRules()
     {
         $mock = $this->mockParameterInterface();

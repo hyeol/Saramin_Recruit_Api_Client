@@ -19,11 +19,13 @@ class Start implements ParameterInterface
     }
 
     /**
-     * @return bool
+     * @return array
      */
     public function rules()
     {
-        return ['start' => ['numeric']];
+        return [
+            'start' => ['numeric']
+        ];
     }
 
     /**
@@ -31,6 +33,8 @@ class Start implements ParameterInterface
      */
     public function getQueryArray()
     {
-        return ['start' => $this->start];
+        return [
+            'start' => $this->start
+        ];
     }
 }
