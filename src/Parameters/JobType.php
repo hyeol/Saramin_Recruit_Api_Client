@@ -41,7 +41,7 @@ class JobType implements ParameterInterface
     public function getQueryArray()
     {
         return [
-            'job_type' => implode(' ', $this->jobType)
+            'job_type' => implode(' ', $this->jobType),
         ];
     }
 }

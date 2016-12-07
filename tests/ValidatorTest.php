@@ -20,7 +20,7 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'datetime'
+                'datetime',
             ],
         ]);
         $this->setData($mock, [
@@ -32,7 +32,7 @@ class ValidatorTest extends BaseTestCase
         $mock = $this->mockParameterInterface();
         $this->setRules($mock, [
             'field' => [
-                'datetime'
+                'datetime',
             ],
         ]);
         $this->setData($mock, [
@@ -61,7 +61,7 @@ class ValidatorTest extends BaseTestCase
         $this->setRules($mock, [
             'field' => [
                 'date',
-            ]
+            ],
         ]);
         $this->setData($mock, [
             'field' => '2016-01-01',
@@ -96,7 +96,7 @@ class ValidatorTest extends BaseTestCase
             ],
         ]);
         $this->setData($mock, [
-            'field' => '0'
+            'field' => '0',
         ]);
 
         $this->validateWithExpectException($mock);
@@ -129,6 +129,7 @@ class ValidatorTest extends BaseTestCase
 
         $this->validate($mock);
     }
+
     /** @test */
     public function validateRegex()
     {

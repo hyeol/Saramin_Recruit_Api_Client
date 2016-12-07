@@ -8,7 +8,6 @@ class Sr implements ParameterInterface
 {
     private $sr = [];
 
-
     /**
      * Sr constructor.
      *
